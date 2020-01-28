@@ -47,6 +47,7 @@ desired effect
 |---------------------------------------------------------|
 -->
 <body class="hold-transition skin-blue sidebar-mini">
+<div id="app">
 <div class="wrapper">
 
     <!-- Main Header -->
@@ -72,13 +73,13 @@ desired effect
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="hidden-xs">{{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
+                            <span class="hidden-xs">{{ $user->name }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
                                 <p>
-                                    {{ \Illuminate\Support\Facades\Auth::user()->fullName }}
+                                    {{ $user->fullName }}
 {{--                                    <small>مدیریت کل سایت</small>--}}
                                 </p>
                             </li>
@@ -130,10 +131,10 @@ desired effect
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
-                <li ><a href="#"><i class="fa fa-link"></i> <span>لینک</span></a></li>
-                <li><a href="#"><i class="fa fa-link"></i> <span>لینک ۲</span></a></li>
+                <li ><a href="{{ route('api.list') }}"><i class="fa fa-link"></i> <span>مدیریت دامنه(Vue & API)</span></a></li>
+
                 <li class="treeview {{ request()->path() == 'domains/create' ? 'active' : '' }}">
-                    <a href="#"><i class="fa fa-link"></i> <span>چند سطحی</span>
+                    <a href="#"><i class="fa fa-link"></i> <span>مدیریت دامنه(Blade)</span>
                         <span class="pull-left-container">
                             <i class="fa fa-angle-right pull-left"></i>
                         </span>
@@ -178,6 +179,7 @@ desired effect
     </footer>
 
     <div class="control-sidebar-bg"></div>
+</div>
 </div>
 <!-- ./wrapper -->
 

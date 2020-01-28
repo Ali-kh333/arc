@@ -26,7 +26,6 @@ class DomainController extends Controller
 
     public function store(DomainStoreRequest $request)
     {
-
         $user = auth()->user();
         $user->domain()->add($request);
 

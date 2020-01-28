@@ -32,6 +32,9 @@ class ApiDomainValidator implements DomainValidatorContract
 
     private function validate($user, $domainInfo)
     {
+        if (! isset($domainInfo->WhoisRecord)) {
+            return false;
+        }
         return $user->fullName == $domainInfo->WhoisRecord->registrant->name;
     }
 }
