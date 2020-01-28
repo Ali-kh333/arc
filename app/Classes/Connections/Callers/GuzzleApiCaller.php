@@ -4,10 +4,10 @@
 namespace App\Classes\Connections\Callers;
 
 
-use App\Classes\Connections\Contarcts\ApiCaller;
+use App\Classes\Connections\Contracts\ApiCallerContract;
 use GuzzleHttp\Client;
 
-class GuzzleApiCaller implements ApiCaller
+class GuzzleApiCaller implements ApiCallerContract
 {
     private $caller;
 

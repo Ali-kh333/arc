@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'last_name', 'email', 'password',
     ];
 
     /**
@@ -42,4 +42,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(Domain::class);
     }
+
+    public function getFullNameAttribute()
+    {
+        return "{$this->name} {$this->last_name}";
+    }
+
+    public function domain()
+    {
+        $domain = resolve('\App\Classes\Model\Domain');
+        $domain->setUser($this);
+        return $domain;
+    }
+
 }

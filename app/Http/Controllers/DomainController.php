@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Classes\Connections\DomainApiConnection;
-use Illuminate\Http\Request;
+use App\Domain;
+use App\Http\Requests\Domains\DomainStoreRequest;
+use App\User;
 
 class DomainController extends Controller
 {
-    public function index(DomainApiConnection $connection)
+    public function index()
     {
-        $res = $connection->domainName('momburger.com')->call();
-        return dd($res);
+        $domains = auth()->user()->domain()->index();
+        return view('domain.index', compact('domains'));
+    }
+
+    public function show(Domain $domain)
+    {
+        return $domain;
     }
 
     public function create()
@@ -18,8 +24,17 @@ class DomainController extends Controller
         return view('domain.create');
     }
 
-    public function store(Request $request)
+    public function store(DomainStoreRequest $request)
     {
-        return $request->all();
+
+        $user = auth()->user();
+        $user->domain()->add($request);
+
+        return redirect()->route('domains.index');
+    }
+
+    public function destroy(Domain $domain)
+    {
+        // Delete
     }
 }

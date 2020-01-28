@@ -4,7 +4,7 @@
 namespace App\Classes\Connections;
 
 
-use App\Classes\Connections\Contarcts\ApiCaller;
+use App\Classes\Connections\Contracts\ApiCallerContract;
 
 abstract class ApiConnection
 {
@@ -17,7 +17,7 @@ abstract class ApiConnection
 
     public function __construct()
     {
-        $this->apiCaller = resolve(ApiCaller::class);
+        $this->apiCaller = resolve(ApiCallerContract::class);
     }
 
 

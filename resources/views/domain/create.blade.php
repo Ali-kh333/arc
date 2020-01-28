@@ -7,46 +7,24 @@
                 <div class="box-header">
                     <h3 class="box-title">رنگ و زمان</h3>
                 </div>
-                <div class="box-body">
-                    <!-- Color Picker -->
-                    <div class="form-group">
-                        <label>انتخاب رنگ</label>
-                        <input type="text" class="form-control my-colorpicker1">
-                    </div>
-                    <!-- /.form group -->
-
-                    <!-- Color Picker -->
-                    <div class="form-group">
-                        <label>انتخاب رنگ با دکمه</label>
-
-                        <div class="input-group my-colorpicker2">
-                            <input type="text" class="form-control">
-
-                            <div class="input-group-addon">
-                                <i></i>
-                            </div>
-                        </div>
-                        <!-- /.input group -->
-                    </div>
-                    <!-- /.form group -->
-
-                    <!-- time Picker -->
-                    <div class="bootstrap-timepicker">
+                <form role="form" method="POST" action="{{ route('domains.store') }}">
+                    @csrf
+                    <div class="box-body">
                         <div class="form-group">
-                            <label>انتخاب زمان</label>
-
-                            <div class="input-group">
-                                <input type="text" class="form-control timepicker">
-
-                                <div class="input-group-addon">
-                                    <i class="fa fa-clock-o"></i>
-                                </div>
-                            </div>
-                            <!-- /.input group -->
+                            <label>انتخاب رنگ</label>
+                            <input type="text" class="form-control" name="name">
+                            @error('name')
+                                <span class="invalid-feedback text-danger" >
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-                        <!-- /.form group -->
                     </div>
-                </div>
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">ارسال</button>
+{{--                        <button type="button" class="btn">انصراف</button>--}}
+                    </div>
+                </form>
                 <!-- /.box-body -->
             </div>
         </div>

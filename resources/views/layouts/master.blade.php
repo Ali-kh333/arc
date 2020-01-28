@@ -72,39 +72,41 @@ desired effect
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <span class="hidden-xs">علیرضا حسینی زاده</span>
+                            <span class="hidden-xs">{{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
                                 <p>
-                                    علیرضا حسینی زاده
-                                    <small>مدیریت کل سایت</small>
+                                    {{ \Illuminate\Support\Facades\Auth::user()->fullName }}
+{{--                                    <small>مدیریت کل سایت</small>--}}
                                 </p>
                             </li>
                             <!-- Menu Body -->
-                            <li class="user-body">
-                                <div class="row">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">صفحه من</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">فروش</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">دوستان</a>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
-                            </li>
+{{--                            <li class="user-body">--}}
+{{--                                <div class="row">--}}
+{{--                                    <div class="col-xs-4 text-center">--}}
+{{--                                        <a href="#">صفحه من</a>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-xs-4 text-center">--}}
+{{--                                        <a href="#">فروش</a>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-xs-4 text-center">--}}
+{{--                                        <a href="#">دوستان</a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <!-- /.row -->--}}
+{{--                            </li>--}}
                             <!-- Menu Footer-->
                             <li class="user-footer">
-                                <div class="pull-left">
+                                {{--<div class="pull-left">
                                     <a href="#" class="btn btn-default btn-flat">پروفایل</a>
-                                </div>
-                                <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">خروج</a>
-                                </div>
+                                </div>--}}
+
+                                <form action="{{ route('logout') }}" class="pull-right" method="POST">
+                                    @csrf
+                                    <button style="margin-left: 0;width: 100%" class="btn btn-default btn-flat">خروج</button>
+                                </form>
                             </li>
                         </ul>
                     </li>
@@ -137,8 +139,8 @@ desired effect
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li ><a href="#">لینک سطح ۱</a></li>
-                        <li {{ request()->path() == 'domains/create' ? 'class=active' : '' }} ><a href="#">لینک سطح ۱</a></li>
+                        <li {{ request()->path() == 'domains/index' ? 'class=active' : '' }}><a href="{{ route('domains.index') }}">نمایش</a></li>
+                        <li {{ request()->path() == 'domains/create' ? 'class=active' : '' }} ><a href="{{ route('domains.create') }}">ثبت</a></li>
                     </ul>
                 </li>
             </ul>
@@ -151,14 +153,14 @@ desired effect
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>
-                عنوان صفحه
-                <small>توضیحات</small>
-            </h1>
-            <ol class="breadcrumb">
+{{--            <h1>--}}
+{{--                عنوان صفحه--}}
+{{--                <small>توضیحات</small>--}}
+{{--            </h1>--}}
+            {{--<ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> خانه</a></li>
                 <li class="active">صفحه</li>
-            </ol>
+            </ol>--}}
         </section>
 
         <!-- Main content -->
@@ -180,6 +182,22 @@ desired effect
 <!-- ./wrapper -->
 
 <script src="{{ asset('js/app.js') }}"></script>
+{{--<script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer ></script>--}}
+
+
+<script>
+    $(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+            'paging'      : true,
+            'lengthChange': false,
+            'searching'   : false,
+            'ordering'    : true,
+            'info'        : true,
+            'autoWidth'   : false
+        })
+    })
+</script>
 
 </body>
 </html>
